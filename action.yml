@@ -1,0 +1,20 @@
+name: Print Secret Length Example Action
+
+description: A GitHub Action to print the length of a secret stored in your repository.
+
+author: Your Name <your.email@example.com>
+
+runs:
+  using: "composite"
+  steps:
+    - name: Print Secret Length
+      shell: bash
+      env:
+        MY_SECRET: ${{ secrets.MY_SECRET }}
+      run: |
+        if [ -z "$MY_SECRET" ]; then
+          echo "Secret is empty or not defined."
+          exit 1
+        fi
+        echo "The length of the secret is: ${#MY_SECRET}"
+
