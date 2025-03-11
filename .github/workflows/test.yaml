@@ -5,14 +5,8 @@ on:
 
 jobs:
   triggerWorkflow:
-    name: Trigger Workflow
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Call Workflow
-        uses: ./workflow.yaml
-        with:
-          inputs: "World"
+    uses: c15yi/ci-test-provider/workflow.yaml@main
+    secrets: inherit
+    with:
+      greeting: "World"
 
