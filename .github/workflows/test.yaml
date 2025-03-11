@@ -13,7 +13,6 @@ jobs:
 
       - name: Call Workflow
         uses: ./workflow.yaml
-        secrets: inherit
         with:
           inputs: "World"
 
