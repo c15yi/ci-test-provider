@@ -1,0 +1,25 @@
+name: Print Secret Length Example Action
+
+on:
+  workflow_call:
+    inputs:
+      greeting:
+        type: string
+        required: true
+
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Secret Length
+        shell: bash
+        env:
+          MY_SECRET: ${{ secrets.MY_SECRET }}
+        run: |
+          echo "Hello ${{ inputs.greeting }}"
+
+          if [ -z "$MY_SECRET" ]; then
+            echo "Secret is empty or not defined."
+            exit 1
+          fi
+          echo "The length of the secret is: ${#MY_SECRET}"

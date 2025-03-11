@@ -1,0 +1,19 @@
+name: Test reusable workflow
+
+on:
+  push:
+
+jobs:
+  triggerWorkflow:
+    name: Trigger Workflow
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Call Workflow
+        uses: ./workflow.yaml
+        secrets: inherit
+        with:
+          inputs: "World"
+
